@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════
+   GeoData Platform — "Dark Terrain" Design System
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* ── Surface Palette (layered depth) ── */
+  --surface-base: #0a0a0c;
+  --surface-1: #111115;
+  --surface-2: #18181d;
+  --surface-3: #1f1f26;
+  --surface-4: #28282f;
+  --surface-hover: #2a2a33;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --text-primary: #e8e8ed;
+  --text-secondary: #8a8a96;
+  --text-tertiary: #5a5a66;
+
+  /* ── CYAN / BLUE — Navigation & Spatial ── */
+  --nav: #22d3ee;
+  --nav-dim: #0e7490;
+  --nav-glow: rgba(34, 211, 238, 0.15);
+  --nav-bg: rgba(34, 211, 238, 0.06);
+
+  /* ── EMERALD / GREEN — Status & Data ── */
+  --status: #34d399;
+  --status-dim: #047857;
+  --status-glow: rgba(52, 211, 153, 0.15);
+  --status-bg: rgba(52, 211, 153, 0.06);
+
+  /* ── AMBER / YELLOW — Measurements & Highlights ── */
+  --measure: #fbbf24;
+  --measure-dim: #b45309;
+  --measure-glow: rgba(251, 191, 36, 0.15);
+  --measure-bg: rgba(251, 191, 36, 0.06);
+
+  /* ── RED / CORAL — Actions & Alerts ── */
+  --action: #f87171;
+  --action-dim: #b91c1c;
+  --action-glow: rgba(248, 113, 113, 0.15);
+  --action-bg: rgba(248, 113, 113, 0.06);
+
+  /* ── Typography ── */
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+  --font-data: 'JetBrains Mono', monospace;
+
+  /* ── Spatial ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-elevated: 0 4px 16px rgba(0,0,0,0.5), 0 8px 32px rgba(0,0,0,0.25);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface-4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
