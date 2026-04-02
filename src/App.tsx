@@ -4,8 +4,10 @@ import { Overview } from './sections/Overview';
 import { WellData } from './sections/WellData';
 import { Analysis } from './sections/Analysis';
 import { Operations } from './sections/Operations';
+import { PaletteSelector } from './components/PaletteSelector';
 
 import './components/Sidebar.css';
+import './components/PaletteSelector.css';
 import './components/Card.css';
 import './components/DataTable.css';
 import './components/MiniChart.css';
@@ -28,6 +30,7 @@ function App() {
       <main className="main-area">
         <Section />
       </main>
+      <PaletteSelector />
     </div>
   );
 }

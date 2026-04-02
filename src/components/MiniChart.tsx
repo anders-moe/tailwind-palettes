@@ -1,18 +1,14 @@
+import { useId } from 'react';
+import { useThemeColors } from '../hooks/useThemeColors';
+
 type Accent = 'nav' | 'status' | 'measure' | 'action';
 
-const colorMap: Record<Accent, string> = {
-  nav: '#22d3ee',
-  status: '#34d399',
-  measure: '#fbbf24',
-  action: '#f87171',
-};
-
-const glowMap: Record<Accent, string> = {
-  nav: 'rgba(34,211,238,0.15)',
-  status: 'rgba(52,211,153,0.15)',
-  measure: 'rgba(251,191,36,0.15)',
-  action: 'rgba(248,113,113,0.15)',
-};
+function hexToGlow(hex: string, alpha = 0.15): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 export function SparkLine({ data, color, width = 120, height = 36 }: {
   data: number[];
@@ -20,6 +16,10 @@ export function SparkLine({ data, color, width = 120, height = 36 }: {
   width?: number;
   height?: number;
 }) {
+  const colors = useThemeColors();
+  const c = colors[color];
+  const gradId = useId();
+
   const min = Math.min(...data);
   const max = Math.max(...data);
   const range = max - min || 1;
@@ -36,16 +36,16 @@ export function SparkLine({ data, color, width = 120, height = 36 }: {
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="sparkline">
       <defs>
-        <linearGradient id={`grad-${color}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={colorMap[color]} stopOpacity="0.25" />
-          <stop offset="100%" stopColor={colorMap[color]} stopOpacity="0" />
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={c} stopOpacity="0.25" />
+          <stop offset="100%" stopColor={c} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <polygon points={areaPoints} fill={`url(#grad-${color})`} />
+      <polygon points={areaPoints} fill={`url(#${gradId})`} />
       <polyline
         points={points}
         fill="none"
-        stroke={colorMap[color]}
+        stroke={c}
         strokeWidth="1.5"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -60,6 +60,10 @@ export function DonutChart({ value, label, color, size = 80 }: {
   color: Accent;
   size?: number;
 }) {
+  const colors = useThemeColors();
+  const c = colors[color];
+  const glow = hexToGlow(c);
+
   const strokeWidth = 6;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -75,15 +79,15 @@ export function DonutChart({ value, label, color, size = 80 }: {
         <circle
           cx={size / 2} cy={size / 2} r={radius}
           fill="none"
-          stroke={colorMap[color]}
+          stroke={c}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           strokeLinecap="round"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           style={{
-            filter: `drop-shadow(0 0 4px ${glowMap[color]})`,
-            transition: 'stroke-dashoffset 0.8s ease',
+            filter: `drop-shadow(0 0 4px ${glow})`,
+            transition: 'stroke-dashoffset 0.8s ease, stroke 0.3s ease',
           }}
         />
       </svg>
@@ -99,7 +103,8 @@ export function DonutChart({ value, label, color, size = 80 }: {
           fontFamily: 'var(--font-data)',
           fontSize: 16,
           fontWeight: 600,
-          color: colorMap[color],
+          color: c,
+          transition: 'color 0.3s ease',
         }}>{value}%</span>
         <span style={{
           fontSize: 9,
@@ -117,6 +122,8 @@ export function BarChart({ data, color }: {
   data: { label: string; value: number }[];
   color: Accent;
 }) {
+  const colors = useThemeColors();
+  const c = colors[color];
   const max = Math.max(...data.map(d => d.value));
   return (
     <div className="bar-chart">
@@ -129,7 +136,7 @@ export function BarChart({ data, color }: {
               style={{ width: `${(d.value / max) * 100}%` }}
             />
           </div>
-          <span className="bar-value" style={{ color: colorMap[color] }}>{d.value}</span>
+          <span className="bar-value" style={{ color: c, transition: 'color 0.3s ease' }}>{d.value}</span>
         </div>
       ))}
     </div>
