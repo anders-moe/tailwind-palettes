@@ -52,9 +52,9 @@ export function Operations() {
           <div className="card-title">System Health</div>
           <div style={{ display: 'flex', justifyContent: 'space-around', padding: '12px 0' }}>
             <DonutChart value={99} label="API" color="status" size={72} />
-            <DonutChart value={95} label="DB" color="status" size={72} />
+            <DonutChart value={95} label="DB" color="nav" size={72} />
             <DonutChart value={87} label="Storage" color="measure" size={72} />
-            <DonutChart value={72} label="Compute" color="nav" size={72} />
+            <DonutChart value={72} label="Compute" color="action" size={72} />
           </div>
         </Card>
 
