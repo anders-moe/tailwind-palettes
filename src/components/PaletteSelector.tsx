@@ -41,8 +41,8 @@ function makeLightColorSet(base: string, dim: string): ColorSet {
   return {
     base,
     dim,
-    glow: `rgba(${r}, ${g}, ${b}, 0.10)`,
-    bg: `rgba(${r}, ${g}, ${b}, 0.06)`,
+    glow: `rgba(${r}, ${g}, ${b}, 0.14)`,
+    bg: `rgba(${r}, ${g}, ${b}, 0.07)`,
   };
 }
 
@@ -189,13 +189,17 @@ function applyPalette(p: PaletteDef) {
   root.setProperty('--border-subtle', p.border.subtle);
   root.setProperty('--border-medium', p.border.medium);
 
-  // Shadows — lighter for light mode
+  // Mode-specific adjustments
   if (p.mode === 'light') {
-    root.setProperty('--shadow-card', '0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)');
-    root.setProperty('--shadow-elevated', '0 4px 16px rgba(0,0,0,0.1), 0 8px 32px rgba(0,0,0,0.06)');
+    root.setProperty('--shadow-card', '0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.03)');
+    root.setProperty('--shadow-elevated', '0 4px 16px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04)');
+    root.setProperty('--sidebar-edge-shadow', 'rgba(0,0,0,0.04)');
+    root.setProperty('--scrollbar-thumb', '#c8c8d0');
   } else {
     root.setProperty('--shadow-card', '0 1px 3px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.15)');
     root.setProperty('--shadow-elevated', '0 4px 16px rgba(0,0,0,0.5), 0 8px 32px rgba(0,0,0,0.25)');
+    root.setProperty('--sidebar-edge-shadow', 'rgba(0,0,0,0.15)');
+    root.setProperty('--scrollbar-thumb', '#28282f');
   }
 
   // Category colors

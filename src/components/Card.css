@@ -53,10 +53,10 @@
 .stat-card--action::before { background: linear-gradient(90deg, var(--action), transparent 80%); }
 
 /* Ambient glow behind the card */
-.stat-card--nav    { box-shadow: var(--shadow-card), 0 0 30px -10px rgba(34, 211, 238, 0.08); }
-.stat-card--status { box-shadow: var(--shadow-card), 0 0 30px -10px rgba(52, 211, 153, 0.08); }
-.stat-card--measure { box-shadow: var(--shadow-card), 0 0 30px -10px rgba(251, 191, 36, 0.08); }
-.stat-card--action { box-shadow: var(--shadow-card), 0 0 30px -10px rgba(248, 113, 113, 0.08); }
+.stat-card--nav    { box-shadow: var(--shadow-card), 0 0 30px -10px var(--nav-glow); }
+.stat-card--status { box-shadow: var(--shadow-card), 0 0 30px -10px var(--status-glow); }
+.stat-card--measure { box-shadow: var(--shadow-card), 0 0 30px -10px var(--measure-glow); }
+.stat-card--action { box-shadow: var(--shadow-card), 0 0 30px -10px var(--action-glow); }
 
 .stat-label {
   font-size: 11.5px;
